@@ -58,8 +58,10 @@ public class MyArrayList<T> implements MyList {
     }
 
     private void assignEmptyList() {
-        data = new Object[DEFAULT_CAPACITY];
-        size = 0;
+        if (size != 0) {
+            data = new Object[DEFAULT_CAPACITY];
+            size = 0;
+        }
     }
     private void resizeIfNecessary() {
         if(size == data.length) {
