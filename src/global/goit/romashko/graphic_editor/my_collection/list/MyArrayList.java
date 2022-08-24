@@ -1,8 +1,10 @@
 package global.goit.romashko.graphic_editor.my_collection.list;
 
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.StringJoiner;
 
-public class MyArrayList<T> implements MyList {
+public class MyArrayList<T> implements MyList<T> {
 
     private static final int DEFAULT_CAPACITY = 10;
     Object[] data;
@@ -23,7 +25,7 @@ public class MyArrayList<T> implements MyList {
     }
 
     @Override
-    public void add(Object value) {
+    public void add(T value) {
         if (value == null) {
             throw new IllegalArgumentException("null value is not allowed");
         }
@@ -52,9 +54,25 @@ public class MyArrayList<T> implements MyList {
     }
 
     @Override
-    public Object get(int index) {
+    public T get(int index) {
         checkCollectionBounds(index);
         return (T) data[index];
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MyArrayList<?> that = (MyArrayList<?>) o;
+
+        // Probably incorrect - comparing Object[] arrays with Arrays.equals
+        return Arrays.equals(data, that.data);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(data);
     }
 
     private void assignEmptyList() {
@@ -72,6 +90,27 @@ public class MyArrayList<T> implements MyList {
     private void checkCollectionBounds(int index) {
         if(index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Requested index " + index + " is out of bounds for size " + size);
+        }
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new MyIterator<>();
+    }
+
+    public class MyIterator<E> implements Iterator<E> {
+        int indexPosition = 0;
+
+        @Override
+        public boolean hasNext() {
+            return indexPosition < size;
+        }
+
+        @Override
+        public E next() {
+            E value = (E) data[indexPosition];
+            indexPosition++;
+            return value;
         }
     }
 }
