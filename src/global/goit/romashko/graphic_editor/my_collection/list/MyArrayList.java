@@ -103,7 +103,7 @@ public class MyArrayList<T> implements MyList<T> {
         return new MyIterator<>();
     }
 
-    public class MyIterator<E> implements Iterator<E> {
+    private class MyIterator<E> implements Iterator<E> {
         int indexPosition = 0;
 
         @Override

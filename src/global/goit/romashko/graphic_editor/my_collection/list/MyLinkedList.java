@@ -85,7 +85,7 @@ public class MyLinkedList<T> implements MyList<T> {
         return new MyIterator<>(header);
     }
 
-    public class MyIterator<E> implements Iterator<E> {
+    private class MyIterator<E> implements Iterator<E> {
         private Node<E> current;
         private boolean isLoopTriggered = false;
 
