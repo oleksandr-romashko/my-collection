@@ -37,6 +37,10 @@ public class MyArrayList<T> implements MyList<T> {
     @Override
     public void remove(int index) {
         checkCollectionBounds(index);
+        if (size == 1) {
+            assignEmptyList();
+            return;
+        }
         Object[] newData = new Object[size - 1];
         System.arraycopy(data,0,newData,0,index);
         System.arraycopy(data,index+1,newData,index,size - index -1);
