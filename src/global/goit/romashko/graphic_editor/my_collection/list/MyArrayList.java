@@ -7,8 +7,8 @@ import java.util.StringJoiner;
 public class MyArrayList<T> implements MyList<T> {
 
     private static final int DEFAULT_CAPACITY = 10;
-    Object[] data;
-    int size;
+    private Object[] data;
+    private int size;
 
     public MyArrayList() {
         assignEmptyList();
