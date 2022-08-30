@@ -62,6 +62,9 @@ public class MyLinkedList<T> implements MyList<T> {
         prev.setNext(next);
         next.setPrev(prev);
 
+        current.setNext(null);
+        current.setPrev(null);
+
         if (index == 0) {
             header = next;
         }
