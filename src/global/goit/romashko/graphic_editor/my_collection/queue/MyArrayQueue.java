@@ -1,6 +1,7 @@
 package global.goit.romashko.graphic_editor.my_collection.queue;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.StringJoiner;
 
 public class MyArrayQueue<T> implements MyQueue<T> {
@@ -32,7 +33,9 @@ public class MyArrayQueue<T> implements MyQueue<T> {
 
     @Override
     public void remove(int index) {
-        checkCollectionBounds(index);
+        if(index < 0 || index >= size) {
+            throw new NoSuchElementException("No such element for index " + index);
+        }
         if (size == 1) {
             assignEmptyQueue();
             return;
@@ -47,12 +50,18 @@ public class MyArrayQueue<T> implements MyQueue<T> {
     @Override
     @SuppressWarnings("unchecked")
     public T peek() {
+        if (size == 0) {
+            return null;
+        }
         return (T) data[0];
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public T poll() {
+        if (size == 0) {
+            return null;
+        }
         Object first = data[0];
         remove(0);
         return (T) first;
@@ -70,12 +79,6 @@ public class MyArrayQueue<T> implements MyQueue<T> {
     private void assignEmptyQueue() {
         data = new Object[0];
         size = 0;
-    }
-
-    private void checkCollectionBounds(int index) {
-        if(index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Requested index " + index + " is out of bounds for size " + size);
-        }
     }
 
     @Override
