@@ -54,6 +54,7 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public T get(int index) {
         checkCollectionBounds(index);
         return (T) data[index];
@@ -107,10 +108,11 @@ public class MyArrayList<T> implements MyList<T> {
         }
 
         @Override
+        @SuppressWarnings("unchecked")
         public E next() {
-            E value = (E) data[indexPosition];
+            Object value = data[indexPosition];
             indexPosition++;
-            return value;
+            return (E) value;
         }
     }
 }

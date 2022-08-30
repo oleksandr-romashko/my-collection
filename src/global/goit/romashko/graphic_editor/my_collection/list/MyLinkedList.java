@@ -53,7 +53,10 @@ public class MyLinkedList<T> implements MyList<T> {
             return;
         }
 
-        Node<T> current = (Node<T>) get(index);
+        Node<T> current = header;
+        for (int i = 0; i < index; i++) {
+            current = current.getNext();
+        }
         Node<T> prev = current.getPrev();
         Node<T> next = current.getNext();
         prev.setNext(next);
@@ -71,7 +74,7 @@ public class MyLinkedList<T> implements MyList<T> {
         for (int i = 0; i < index; i++) {
             current = current.getNext();
         }
-        return (T) current;
+        return current.getElement();
     }
 
     @Override
