@@ -1,4 +1,4 @@
-package global.goit.romashko.graphic_editor.my_collection.list;
+package global.goit.romashko.my_collection.list;
 
 import java.util.Arrays;
 import java.util.Iterator;

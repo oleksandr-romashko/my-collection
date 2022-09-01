@@ -1,20 +1,20 @@
-package global.goit.romashko.graphic_editor.my_collection.stack;
+package global.goit.romashko.my_collection.queue;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.StringJoiner;
 
-public class MyArrayStack<T> implements MyStack<T> {
+public class MyArrayQueue<T> implements MyQueue<T> {
     private Object[] data;
     private int size;
 
-    public MyArrayStack() {
-        assignEmptyStack();
+    public MyArrayQueue() {
+        assignEmptyQueue();
     }
 
     @Override
     public void clear() {
-        assignEmptyStack();
+        assignEmptyQueue();
     }
 
     @Override
@@ -23,7 +23,7 @@ public class MyArrayStack<T> implements MyStack<T> {
     }
 
     @Override
-    public void push(T value) {
+    public void add(T value) {
         Object[] newData = new Object[size + 1];
         System.arraycopy(data,0,newData,0,size);
         newData[size] = value;
@@ -37,7 +37,7 @@ public class MyArrayStack<T> implements MyStack<T> {
             throw new NoSuchElementException("No such element for index " + index);
         }
         if (size == 1) {
-            assignEmptyStack();
+            assignEmptyQueue();
             return;
         }
         Object[] newData = new Object[size - 1];
@@ -53,17 +53,17 @@ public class MyArrayStack<T> implements MyStack<T> {
         if (size == 0) {
             return null;
         }
-        return (T) data[data.length - 1];
+        return (T) data[0];
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public T pop() {
+    public T poll() {
         if (size == 0) {
             return null;
         }
-        Object first = data[data.length - 1];
-        remove(data.length - 1);
+        Object first = data[0];
+        remove(0);
         return (T) first;
     }
 
@@ -76,7 +76,7 @@ public class MyArrayStack<T> implements MyStack<T> {
         return sj.toString();
     }
 
-    private void assignEmptyStack() {
+    private void assignEmptyQueue() {
         data = new Object[0];
         size = 0;
     }

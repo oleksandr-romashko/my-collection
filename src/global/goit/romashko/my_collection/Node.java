@@ -1,4 +1,4 @@
-package global.goit.romashko.graphic_editor.my_collection;
+package global.goit.romashko.my_collection;
 
 public final class Node<E> {
 

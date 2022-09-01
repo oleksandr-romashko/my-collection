@@ -1,6 +1,6 @@
-package global.goit.romashko.graphic_editor.my_collection.list;
+package global.goit.romashko.my_collection.list;
 
-import global.goit.romashko.graphic_editor.my_collection.Node;
+import global.goit.romashko.my_collection.Node;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
