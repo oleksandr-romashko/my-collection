@@ -1,17 +1,17 @@
-package global.goit.romashko.my_collection;
+package global.goit.romashko.my_collection.list;
 
-public final class Node<E> {
+public final class MyNode<E> {
 
     private final E element;
-    private Node<E> prev;
-    private Node<E> next;
+    private MyNode<E> prev;
+    private MyNode<E> next;
 
-    public Node (E element) {
+    public MyNode(E element) {
         this.element = element;
         this.next = this;
         this.prev = this;
     }
-    public Node (E element, Node<E> next, Node<E> prev) {
+    public MyNode(E element, MyNode<E> next, MyNode<E> prev) {
         this.element = element;
         this.next = next;
         this.prev = prev;
@@ -21,19 +21,19 @@ public final class Node<E> {
         return element;
     }
 
-    public Node<E> getNext() {
+    public MyNode<E> getNext() {
         return next;
     }
 
-    public Node<E> getPrev() {
+    public MyNode<E> getPrev() {
         return prev;
     }
 
-    public void setPrev(Node<E> prev) {
+    public void setPrev(MyNode<E> prev) {
         this.prev = prev;
     }
 
-    public void setNext(Node<E> next) {
+    public void setNext(MyNode<E> next) {
         this.next = next;
     }
 }

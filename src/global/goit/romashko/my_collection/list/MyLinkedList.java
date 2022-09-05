@@ -1,14 +1,12 @@
 package global.goit.romashko.my_collection.list;
 
-import global.goit.romashko.my_collection.Node;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.StringJoiner;
 
 public class MyLinkedList<T> implements MyList<T> {
 
-    private Node<T> header;
+    private MyNode<T> header;
     private int size;
 
     public MyLinkedList() {
@@ -31,14 +29,14 @@ public class MyLinkedList<T> implements MyList<T> {
             throw new IllegalArgumentException("null Node value is not allowed");
         }
         if (size == 0) {
-            header = new Node<>(value);
+            header = new MyNode<>(value);
         } else if (size == 1) {
-            Node<T> newTail = new Node<>(value, header, header);
+            MyNode<T> newTail = new MyNode<>(value, header, header);
             header.setNext(newTail);
             header.setPrev(newTail);
         } else {
-            Node<T> oldTail = header.getPrev();
-            Node<T> newTail = new Node<>(value, header, oldTail);
+            MyNode<T> oldTail = header.getPrev();
+            MyNode<T> newTail = new MyNode<>(value, header, oldTail);
             oldTail.setNext(newTail);
             header.setPrev(newTail);
         }
@@ -53,12 +51,12 @@ public class MyLinkedList<T> implements MyList<T> {
             return;
         }
 
-        Node<T> current = header;
+        MyNode<T> current = header;
         for (int i = 0; i < index; i++) {
             current = current.getNext();
         }
-        Node<T> prev = current.getPrev();
-        Node<T> next = current.getNext();
+        MyNode<T> prev = current.getPrev();
+        MyNode<T> next = current.getNext();
         prev.setNext(next);
         next.setPrev(prev);
 
@@ -73,7 +71,7 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public T get(int index) {
-        Node<T> current = header;
+        MyNode<T> current = header;
         for (int i = 0; i < index; i++) {
             current = current.getNext();
         }
@@ -86,10 +84,10 @@ public class MyLinkedList<T> implements MyList<T> {
     }
 
     private class MyIterator<E> implements Iterator<E> {
-        private Node<E> current;
+        private MyNode<E> current;
         private boolean isLoopTriggered = false;
 
-        public MyIterator(Node<E> header) {
+        public MyIterator(MyNode<E> header) {
             current = header;
         }
 
@@ -124,7 +122,7 @@ public class MyLinkedList<T> implements MyList<T> {
 
         StringJoiner sj = new StringJoiner(", ", "[", "]");
 
-        Node<T> currentNode = header;
+        MyNode<T> currentNode = header;
         sj.add(currentNode.getElement().toString());
         while (currentNode.getNext() != header) {
             currentNode = currentNode.getNext();
