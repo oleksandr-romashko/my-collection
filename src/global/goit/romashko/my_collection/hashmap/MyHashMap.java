@@ -121,7 +121,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     }
 
     private Node<K, V>[] createEmptyBucketsArray() {
-        return new MyHashMap.Node<>[DEFAULT_INI_BUCKET_CAPACITY];
+        return new MyHashMap.Node[DEFAULT_INI_BUCKET_CAPACITY];
     }
 
     int calculateTableIndex(int hash) {
@@ -132,7 +132,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         int counter = countFilledBuckets(table);
         if (counter > (int) (LOAD_FACTOR * table.length) && counter < (int) (LOAD_FACTOR * Integer.MAX_VALUE / 2)) { //
             Node<K, V>[] oldTable = table;
-            table = new MyHashMap.Node<>[(int) (oldTable.length * 2)];
+            table = new MyHashMap.Node[(int) (oldTable.length * 2)];
             rehashTables(oldTable);
         }
     }
@@ -141,7 +141,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         int counter = countFilledBuckets(table);
         if (counter <= (int) (LOAD_FACTOR * table.length / 2) && counter >= (DEFAULT_INI_BUCKET_CAPACITY * LOAD_FACTOR)) {
             Node<K, V>[] oldTable = table;
-            table = new MyHashMap.Node<>[(int) (oldTable.length / 2)];
+            table = new MyHashMap.Node[(int) (oldTable.length / 2)];
             rehashTables(oldTable);
         }
     }
