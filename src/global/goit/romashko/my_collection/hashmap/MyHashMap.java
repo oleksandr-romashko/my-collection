@@ -120,6 +120,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         return sj.toString();
     }
 
+    @SuppressWarnings("unchecked")
     private Node<K, V>[] createEmptyBucketsArray() {
         return new MyHashMap.Node[DEFAULT_INI_BUCKET_CAPACITY];
     }
@@ -128,6 +129,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         return hash & (table.length - 1);
     }
 
+    @SuppressWarnings("unchecked")
     private void expandTableIfNecessary() {
         int counter = countFilledBuckets(table);
         if (counter > (int) (LOAD_FACTOR * table.length) && counter < (int) (LOAD_FACTOR * Integer.MAX_VALUE / 2)) { //
@@ -137,6 +139,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void shrinkTableIfNecessary() {
         int counter = countFilledBuckets(table);
         if (counter <= (int) (LOAD_FACTOR * table.length / 2) && counter >= (DEFAULT_INI_BUCKET_CAPACITY * LOAD_FACTOR)) {
